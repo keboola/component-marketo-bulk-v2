@@ -99,7 +99,7 @@ class Marketo():
                 request_body['filter']['updatedAt'] = updated_at
 
             # activities specificiations
-            if len(self.desired_activities) > 0:
+            if len(desired_activities) > 0:
                 request_body['filter']['activityTypeIds'] = desired_activities
 
         elif endpoint == 'leads':

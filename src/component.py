@@ -104,8 +104,12 @@ class Component(CommonInterface):
 
         # Leads Endpoint optional parmaeters
         updated_param = query.get('updated_at')
-        month_year_updated = updated_param['value'] if updated_param['type'] == 'month/year' else ''
-        dayspan_updated = updated_param['value'] if updated_param['type'] == 'dayspan' else ''
+        if updated_param:
+            month_year_updated = updated_param['value'] if updated_param['type'] == 'month/year' else ''
+            dayspan_updated = updated_param['value'] if updated_param['type'] == 'dayspan' else ''
+        else:
+            month_year_updated = ''
+            dayspan_updated = ''
         fields_str_tmp = query.get('desired_fields')
         fields_str = [i.strip() for i in fields_str_tmp.split(',')
                       ] if fields_str_tmp else []
