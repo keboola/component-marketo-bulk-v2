@@ -16,7 +16,6 @@
         "client_id": {
             "type": "string",
             "title": "Client ID",
-            "format": "password",
             "propertyOrder": 2
         },
         "#client_secret": {
