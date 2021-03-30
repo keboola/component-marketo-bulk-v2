@@ -107,12 +107,13 @@ class Component(CommonInterface):
         month_year_updated = updated_param['value'] if updated_param['type'] == 'month/year' else ''
         dayspan_updated = updated_param['value'] if updated_param['type'] == 'dayspan' else ''
         fields_str_tmp = query.get('desired_fields')
-        fields_str = [i.strip() for i in fields_str_tmp.split(',')]
+        fields_str = [i.strip() for i in fields_str_tmp.split(',')
+                      ] if fields_str_tmp else []
 
         # Activities Endpoint optinal parameters
         desired_activities_tmp = params.get('desired_activities')
         desired_activities = [i.strip()
-                              for i in desired_activities_tmp.split(",")]
+                              for i in desired_activities_tmp.split(",")] if desired_activities_tmp else []
 
         # Outputing log if parameters are configured
         logging.info("Endpoint: %s" % endpoint)
