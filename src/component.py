@@ -5,6 +5,7 @@ Keboola Marketo Bulk Extractor
 import sys
 import logging
 import os
+import json
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -249,7 +250,7 @@ class Component(CommonInterface):
 
         # Output file destination
         output_file_name = endpoint + '_bulk.csv'
-        output_file_destination = self.tables_out_path + output_file_name
+        output_file_destination = f'{self.tables_out_path}/{output_file_name}'
 
         # Outputting sequence
         if len(list(data_in)) == 0:
