@@ -12,8 +12,7 @@
             "options": {
                 "keep_oneof_values": false
             },
-            "anyOf": [
-                {
+            "anyOf": [{
                     "title": "Leads",
                     "additionalProperties": false,
                     "type": "object",
@@ -31,69 +30,45 @@
                             }
                         },
                         "created_at": {
-                            "type": "array",
+                            "type": "object",
                             "title": "Created At",
-                            "format": "table",
                             "description": "[month/year] required format: MM YYYY, eg: Oct 2018; [dayspan] - number of days back to fetch 'Created At'.",
-                            "uniqueItems": true,
-                            "maxItems": 1,
-                            "items": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "title": "Type",
-                                        "type": "string",
-                                        "enum": [
-                                            "month/year",
-                                            "dayspan"
-                                        ],
-                                        "default": "month/year"
-                                    },
-                                    "value": {
-                                        "title": "Value",
-                                        "type": "string"
-                                    }
+                            "properties": {
+                                "type": {
+                                    "title": "Type",
+                                    "type": "string",
+                                    "enum": [
+                                        "month/year",
+                                        "dayspan"
+                                    ],
+                                    "default": "month/year"
+                                },
+                                "value": {
+                                    "title": "Value",
+                                    "type": "string"
                                 }
                             },
-                            "default": [
-                                {
-                                    "type": "month/year",
-                                    "value": ""
-                                }
-                            ],
                             "propertyOrder": 100
                         },
                         "updated_at": {
-                            "type": "array",
+                            "type": "object",
                             "title": "Updated At",
-                            "format": "table",
-                            "description": "[Optional] - [month/year] required format: MM YYYY, eg: Oct 2018; [dayspan] - number of days back to fetch 'Updated At'.",
-                            "uniqueItems": true,
-                            "maxItems": 1,
-                            "items": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "title": "Type",
-                                        "enum": [
-                                            "month/year",
-                                            "dayspan"
-                                        ],
-                                        "default": "month/year"
-                                    },
-                                    "value": {
-                                        "title": "Value",
-                                        "type": "string"
-                                    }
+                            "description": "[month/year] required format: MM YYYY, eg: Oct 2018; [dayspan] - number of days back to fetch 'Updated At'.",
+                            "properties": {
+                                "type": {
+                                    "title": "Type",
+                                    "type": "string",
+                                    "enum": [
+                                        "month/year",
+                                        "dayspan"
+                                    ],
+                                    "default": "month/year"
+                                },
+                                "value": {
+                                    "title": "Value",
+                                    "type": "string"
                                 }
                             },
-                            "default": [
-                                {
-                                    "type": "month/year",
-                                    "value": ""
-                                }
-                            ],
                             "propertyOrder": 200
                         },
                         "desired_fields": {
@@ -119,38 +94,27 @@
                             ],
                             "options": {
                                 "hidden": true
-                            },
-                            "propertyOrder": 100
+                            }
                         },
                         "created_at": {
-                            "type": "array",
+                            "type": "object",
                             "title": "Created At",
-                            "format": "table",
                             "description": "[month/year] required format: MM YYYY, eg: Oct 2018; [dayspan] - number of days back to fetch 'Created At'.",
-                            "uniqueItems": true,
-                            "maxItems": 1,
-                            "items": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "enum": [
-                                            "month/year",
-                                            "dayspan"
-                                        ],
-                                        "default": "month/year"
-                                    },
-                                    "value": {
-                                        "type": "string"
-                                    }
+                            "properties": {
+                                "type": {
+                                    "title": "Type",
+                                    "type": "string",
+                                    "enum": [
+                                        "month/year",
+                                        "dayspan"
+                                    ],
+                                    "default": "month/year"
+                                },
+                                "value": {
+                                    "title": "Value",
+                                    "type": "string"
                                 }
                             },
-                            "default": [
-                                {
-                                    "type": "month/year",
-                                    "value": ""
-                                }
-                            ],
                             "propertyOrder": 200
                         },
                         "desired_activities": {

@@ -98,12 +98,12 @@ class Component(CommonInterface):
         # Endpoint parameters
         query = params.get(KEY_QUERY)
         endpoint = query.get('endpoint')
-        created_param = query.get('created_at')[0]
+        created_param = query.get('created_at')
         month_year_created = created_param['value'] if created_param['type'] == 'month/year' else ''
         dayspan_created = created_param['value'] if created_param['type'] == 'dayspan' else ''
 
         # Leads Endpoint optional parmaeters
-        updated_param = query.get('updated_at')[0]
+        updated_param = query.get('updated_at')
         month_year_updated = updated_param['value'] if updated_param['type'] == 'month/year' else ''
         dayspan_updated = updated_param['value'] if updated_param['type'] == 'dayspan' else ''
         fields_str_tmp = query.get('desired_fields')

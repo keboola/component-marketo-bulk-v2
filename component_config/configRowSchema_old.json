@@ -152,6 +152,35 @@
                             ],
                             "propertyOrder": 200
                         },
+                        "created_at_v2": {
+                            "type": "object",
+                            "title": "Created At",
+                            "format": "table",
+                            "description": "[month/year] required format: MM YYYY, eg: Oct 2018; [dayspan] - number of days back to fetch 'Created At'.",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "month/year",
+                                            "dayspan"
+                                        ],
+                                        "default": "month/year"
+                                    },
+                                    "value": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "default": [
+                                {
+                                    "type": "month/year",
+                                    "value": ""
+                                }
+                            ],
+                            "propertyOrder": 200
+                        },
                         "desired_activities": {
                             "type": "string",
                             "title": "Desired Activities",
