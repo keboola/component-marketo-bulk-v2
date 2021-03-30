@@ -74,7 +74,7 @@
                         "desired_fields": {
                             "type": "string",
                             "title": "Desired Fields",
-                            "description": "[Required] - Values must be comma separated.Specifying the columns you want to extractor and id column needs to be include as it is the primary key. ",
+                            "description": "[Required] - Values must be comma separated. Specifying the columns you want to extractor and [id] column needs to be include as it is the primary key. ",
                             "propertyOrder": 300
                         }
                     }
