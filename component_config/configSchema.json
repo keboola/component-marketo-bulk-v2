@@ -1,0 +1,29 @@
+{
+    "type": "object",
+    "title": "Marketo Database",
+    "required": [
+        "munchkinid",
+        "client_id",
+        "#client_secret"
+    ],
+    "properties": {
+        "munchkinid": {
+            "type": "string",
+            "title": "Munchkin ID",
+            "description": "Can be found in [Admin] > [Web Services] menu in the REST API section",
+            "propertyOrder": 1
+        },
+        "client_id": {
+            "type": "string",
+            "title": "Client ID",
+            "format": "password",
+            "propertyOrder": 2
+        },
+        "#client_secret": {
+            "type": "string",
+            "title": "Client Secret",
+            "format": "password",
+            "propertyOrder": 3
+        }
+    }
+}

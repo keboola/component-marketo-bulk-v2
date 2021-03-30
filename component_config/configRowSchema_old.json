@@ -1,0 +1,280 @@
+{
+    "type": "object",
+    "title": "Marketo Database",
+    "required": [
+        "endpoint",
+        "created_at",
+        "leads_parameter",
+        "activities_parameter",
+        "debug"
+    ],
+    "properties": {
+        "query": {
+            "title": "Endpoint",
+            "type": "object",
+            "options": {
+                "keep_oneof_values": false
+            },
+            "anyOf": [
+                {
+                    "title": "Leads",
+                    "additionalProperties": false,
+                    "type": "object",
+                    "options": {
+                        "keep_oneof_values": false
+                    },
+                    "properties": {
+                        "endpoint": {
+                            "type": "string",
+                            "enum": [
+                                "Leads"
+                            ],
+                            "options": {
+                                "hidden": true
+                            }
+                        },
+                        "created_at": {
+                            "type": "array",
+                            "title": "Created At",
+                            "format": "table",
+                            "description": "[month/year] required format: MM YYYY, eg: Oct 2018; [dayspan] - number of days back to fetch 'Created At'.",
+                            "uniqueItems": true,
+                            "maxItems": 1,
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "month/year",
+                                            "dayspan"
+                                        ],
+                                        "default": "month/year"
+                                    },
+                                    "value": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "default": [
+                                {
+                                    "type": "month/year",
+                                    "value": ""
+                                }
+                            ],
+                            "propertyOrder": 200
+                        },
+                        "desired_fields": {
+                            "type": "string",
+                            "title": "Desired Fields",
+                            "description": "[Required] - Values must be comma separated.Specifying the columns you want to extractor and id column needs to be include as it is the primary key. ",
+                            "propertyOrder": 200
+                        },
+                        "updated_at": {
+                            "type": "array",
+                            "title": "Updated At",
+                            "format": "table",
+                            "description": "[Optional] - [month/year] required format: MM YYYY, eg: Oct 2018; [dayspan] - number of days back to fetch 'Updated At'.",
+                            "uniqueItems": true,
+                            "maxItems": 1,
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "month/year",
+                                            "dayspan"
+                                        ],
+                                        "default": "month/year"
+                                    },
+                                    "value": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "default": [
+                                {
+                                    "type": "month/year",
+                                    "value": ""
+                                }
+                            ],
+                            "propertyOrder": 100
+                        }
+                    }
+                },
+                {
+                    "title": "Activities",
+                    "additionalProperties": false,
+                    "type": "object",
+                    "options": {
+                        "keep_oneof_values": false
+                    },
+                    "properties": {
+                        "endpoint": {
+                            "type": "string",
+                            "enum": [
+                                "Activities"
+                            ],
+                            "options": {
+                                "hidden": true
+                            },
+                            "propertyOrder": 100
+                        },
+                        "created_at": {
+                            "type": "array",
+                            "title": "Created At",
+                            "format": "table",
+                            "description": "[month/year] required format: MM YYYY, eg: Oct 2018; [dayspan] - number of days back to fetch 'Created At'.",
+                            "uniqueItems": true,
+                            "maxItems": 1,
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "month/year",
+                                            "dayspan"
+                                        ],
+                                        "default": "month/year"
+                                    },
+                                    "value": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "default": [
+                                {
+                                    "type": "month/year",
+                                    "value": ""
+                                }
+                            ],
+                            "propertyOrder": 200
+                        },
+                        "desired_activities": {
+                            "type": "string",
+                            "title": "Desired Activities",
+                            "description": "[Optional] - IDs of activities you want to extract and separate them by comma. Note: The “Delete Lead” activity is not supported.",
+                            "propertyOrder": 300
+                        }
+                    }
+                }
+            ]
+        },
+        "endpoint": {
+            "type": "string",
+            "title": "Endpoint",
+            "description": "Please configure the additional parameters for the respective endpoint if required.",
+            "enum": [
+                "Leads",
+                "Activities"
+            ],
+            "propertyOrder": 100
+        },
+        "created_at": {
+            "type": "array",
+            "title": "Created At",
+            "format": "table",
+            "description": "[month/year] required format: MM YYYY, eg: Oct 2018; [dayspan] - number of days back to fetch 'Created At'.",
+            "uniqueItems": true,
+            "maxItems": 1,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "month/year",
+                            "dayspan"
+                        ],
+                        "default": "month/year"
+                    },
+                    "value": {
+                        "type": "string"
+                    }
+                }
+            },
+            "default": [
+                {
+                    "type": "month/year",
+                    "value": ""
+                }
+            ],
+            "propertyOrder": 7
+        },
+        "activities_parameter": {
+            "type": "object",
+            "title": "Additional Parameters - Activities",
+            "description": "Additional parameters for the [Activities] endpoing.",
+            "required": [
+                "desired_activities"
+            ],
+            "properties": {
+                "desired_activities": {
+                    "type": "string",
+                    "title": "Desired Activities",
+                    "description": "[Optional] - IDs of activities you want to extract and separate them by comma. Note: The “Delete Lead” activity is not supported.",
+                    "propertyOrder": 100
+                }
+            },
+            "propertyOrder": 200
+        },
+        "leads_parameter": {
+            "type": "object",
+            "title": "Additional Parameters - Leads",
+            "description": "Additional parameters for the [Leads] endpoing.",
+            "required": [
+                "updated_at",
+                "desired_fields"
+            ],
+            "properties": {
+                "desired_fields": {
+                    "type": "string",
+                    "title": "Desired Fields",
+                    "description": "[Required] - Values must be comma separated.Specifying the columns you want to extractor and id column needs to be include as it is the primary key. ",
+                    "propertyOrder": 200
+                },
+                "updated_at": {
+                    "type": "array",
+                    "title": "Updated At",
+                    "format": "table",
+                    "description": "[Optional] - [month/year] required format: MM YYYY, eg: Oct 2018; [dayspan] - number of days back to fetch 'Updated At'.",
+                    "uniqueItems": true,
+                    "maxItems": 1,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": [
+                                    "month/year",
+                                    "dayspan"
+                                ],
+                                "default": "month/year"
+                            },
+                            "value": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "default": [
+                        {
+                            "type": "month/year",
+                            "value": ""
+                        }
+                    ],
+                    "propertyOrder": 100
+                }
+            },
+            "propertyOrder": 300
+        },
+        "debug": {
+            "type": "string",
+            "title": "Debug",
+            "format": "boolean",
+            "default": false,
+            "propertyOrder": 400
+        }
+    }
+}
