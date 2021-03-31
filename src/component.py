@@ -268,7 +268,7 @@ class Component(CommonInterface):
             csv_file.close()
 
             # Output Manifest
-            pk = ['marketoGUID'] if endpoint == 'activities' else ['id']
+            pk = ['marketoGUID'] if endpoint.lower() == 'activities' else ['id']
             self.save_manifest(
                 file_name=output_file_name, primary_keys=pk)
 
