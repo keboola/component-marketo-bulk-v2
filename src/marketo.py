@@ -57,6 +57,8 @@ class Marketo():
     def check_response(self, response, stage):
         if response.status_code != 200:
             logging.error(f'[{response.status_code}] - {stage} failed.')
+            if stage == 'Fetching access token':
+                logging.error('Please check your credentials.')
             sys.exit(1)
         else:
             logging.info(stage)
