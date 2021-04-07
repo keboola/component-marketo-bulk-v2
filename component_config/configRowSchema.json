@@ -20,7 +20,7 @@
                     "options": {
                         "keep_oneof_values": false
                     },
-                    "description": "`Leads` endpoint is required to have either `Created At` or `Updated At` parameters configured. The componet will fail if none of them is configured",
+                    "description": "Leads endpoint is required to have either [Created At] or [Updated At] parameters configured. The componet will fail if none of them is configured",
                     "properties": {
                         "endpoint": {
                             "type": "string",
