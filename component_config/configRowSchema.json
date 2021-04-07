@@ -12,13 +12,15 @@
             "options": {
                 "keep_oneof_values": false
             },
-            "anyOf": [{
+            "anyOf": [
+                {
                     "title": "Leads",
                     "additionalProperties": false,
                     "type": "object",
                     "options": {
                         "keep_oneof_values": false
                     },
+                    "description": "`Leads` endpoint is required to have either `Created At` or `Updated At` parameters configured. The componet will fail if none of them is configured",
                     "properties": {
                         "endpoint": {
                             "type": "string",
@@ -31,8 +33,7 @@
                         },
                         "created_at": {
                             "type": "object",
-                            "title": "Created At",
-                            "description": "[month/year] required format: MM YYYY, eg: Oct 2018; [dayspan] - number of days back to fetch 'Created At'.",
+                            "title": "Created At - [Required]",
                             "properties": {
                                 "type": {
                                     "title": "Type",
@@ -45,15 +46,15 @@
                                 },
                                 "value": {
                                     "title": "Value",
-                                    "type": "string"
+                                    "type": "string",
+                                    "description": "[month/year] required format: MM YYYY, eg: Oct 2018; [dayspan] - number of days back to fetch 'Created At'."
                                 }
                             },
                             "propertyOrder": 100
                         },
                         "updated_at": {
                             "type": "object",
-                            "title": "Updated At",
-                            "description": "[month/year] required format: MM YYYY, eg: Oct 2018; [dayspan] - number of days back to fetch 'Updated At'.",
+                            "title": "Updated At - [Optional]",
                             "properties": {
                                 "type": {
                                     "title": "Type",
@@ -66,15 +67,16 @@
                                 },
                                 "value": {
                                     "title": "Value",
-                                    "type": "string"
+                                    "type": "string",
+                                    "description": "[month/year] required format: MM YYYY, eg: Oct 2018; [dayspan] - number of days back to fetch 'Updated At'."
                                 }
                             },
                             "propertyOrder": 200
                         },
                         "desired_fields": {
                             "type": "string",
-                            "title": "Desired Fields",
-                            "description": "[Required] - Values must be comma separated. Specifying the columns you want to extractor and [id] column needs to be include as it is the primary key. ",
+                            "title": "Desired Fields - [Required]",
+                            "description": "Values must be comma separated. Specifying the columns you want to extractor and [id] column needs to be include as it is the primary key. ",
                             "propertyOrder": 300
                         }
                     }
@@ -98,8 +100,7 @@
                         },
                         "created_at": {
                             "type": "object",
-                            "title": "Created At",
-                            "description": "[month/year] required format: MM YYYY, eg: Oct 2018; [dayspan] - number of days back to fetch 'Created At'.",
+                            "title": "Created At - [Required]",
                             "properties": {
                                 "type": {
                                     "title": "Type",
@@ -112,15 +113,16 @@
                                 },
                                 "value": {
                                     "title": "Value",
-                                    "type": "string"
+                                    "type": "string",
+                                    "description": "[month/year] required format: MM YYYY, eg: Oct 2018; [dayspan] - number of days back to fetch 'Created At'."
                                 }
                             },
                             "propertyOrder": 200
                         },
                         "desired_activities": {
                             "type": "string",
-                            "title": "Desired Activities",
-                            "description": "[Optional] - IDs of activities you want to extract and separate them by comma. Note: The “Delete Lead” activity is not supported.",
+                            "title": "Desired Activities - [Optional]",
+                            "description": "IDs of activities you want to extract and separate them by comma. Note: The “Delete Lead” activity is not supported.",
                             "propertyOrder": 300
                         }
                     }
