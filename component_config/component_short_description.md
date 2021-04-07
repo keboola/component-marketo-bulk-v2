@@ -1,1 +1,1 @@
-Extracting users' leads and lead activities from Marketo 
+Marketo is a powerful marketing automation software.
