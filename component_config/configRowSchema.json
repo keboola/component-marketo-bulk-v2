@@ -17,6 +17,10 @@
                     "title": "Leads",
                     "additionalProperties": false,
                     "type": "object",
+                    "required": [
+                        "endpoint",
+                        "desired_fields"
+                    ],
                     "options": {
                         "keep_oneof_values": false
                     },
@@ -85,6 +89,10 @@
                     "title": "Activities",
                     "additionalProperties": false,
                     "type": "object",
+                    "required": [
+                        "endpoint",
+                        "created_at"
+                    ],
                     "options": {
                         "keep_oneof_values": false
                     },

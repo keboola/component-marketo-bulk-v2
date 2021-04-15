@@ -1,8 +1,10 @@
 
+import os
 import sys
 import logging
 import requests
 import time
+
 
 # Disabling list of libraries you want to output in the logger
 disable_libraries = [
@@ -15,10 +17,11 @@ for library in disable_libraries:
 
 class Marketo():
 
-    def __init__(self, munchkin_id, client_id, client_secret):
+    def __init__(self, munchkin_id, client_id, client_secret, tables_out_path):
 
         self.BASE_URL = f'https://{munchkin_id}.mktorest.com'
         self.access_token = self.authenticate(client_id, client_secret)
+        self.tables_out_path = tables_out_path
 
     def get_request(self, url, params=None):
 
@@ -29,6 +32,16 @@ class Marketo():
             sys.exit(1)
 
         return response
+
+    def get_stream_request(self, filename, url, params=None):
+
+        # response = requests.get(url, params=params, stream=True)
+        with requests.get(url, params=params, stream=True) as r:
+            r.raise_for_status()
+
+            with open(filename, 'wb') as f:
+                for chunk in r.iter_content(chunk_size=8192):
+                    f.write(chunk)
 
     def post_request(self, url, params=None, body=None):
 
@@ -133,6 +146,7 @@ class Marketo():
                 request_body['filter']['createdAt'] = created_at
 
         # 1 - Create exports
+
         export_id = self.create_export(
             request_url, request_param, request_body)
 
@@ -207,7 +221,10 @@ class Marketo():
 
         # Output file request parameter
         output_url = f'{request_url}/{export_id}/file.json'
+        output_filename = endpoint + '_bulk.csv'
+        output_file_destination = os.path.join(
+            self.tables_out_path, output_filename)
 
-        response = self.get_request(output_url, request_param)
-
-        return response.content
+        # Streaming results while outputing
+        self.get_stream_request(
+            filename=output_file_destination, url=output_url, params=request_param)

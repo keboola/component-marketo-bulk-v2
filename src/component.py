@@ -6,6 +6,7 @@ import sys
 import logging
 import os
 import json
+import csv
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -44,7 +45,7 @@ REQUIRED_PARAMETERS = [
 ]
 REQUIRED_IMAGE_PARS = []
 
-APP_VERSION = '0.0.1'
+APP_VERSION = '0.0.2'
 
 
 def get_local_data_path():
@@ -151,14 +152,14 @@ class Component(CommonInterface):
 
         # Marketo class
         marketo = Marketo(munchkin_id=munchkin_id,
-                          client_id=client_id, client_secret=client_secret)
+                          client_id=client_id, client_secret=client_secret, tables_out_path=self.tables_out_path)
 
-        # Endpoint Request
-        data_out = marketo.fetch_endpoint(endpoint=endpoint.lower(
+        # Endpoint Request - stream request obj
+        marketo.fetch_endpoint(endpoint=endpoint.lower(
         ), date_obj=date_obj, desired_activities=desired_activities, fields_str=fields_str)
 
-        # Output data
-        self.output_file(endpoint=endpoint, data_in=data_out)
+        # Output manifest data
+        self.check_output(endpoint=endpoint)
 
     def validate_user_parameters(self, params):
         # 1 - check if the configuration is empty
@@ -251,24 +252,32 @@ class Component(CommonInterface):
 
         return CREATED_DATE, start_date, end_date
 
-    def output_file(self, endpoint, data_in):
+    def check_output(self, endpoint):
+        '''
+        Checking if output file contains data, then output manifest
+        If not, remove output file and do not output manifest
+        '''
 
         # Output file destination
         output_file_name = endpoint + '_bulk.csv'
-        output_file_destination = f'{self.tables_out_path}/{output_file_name}'
+        output_file_destination = os.path.join(
+            self.tables_out_path, output_file_name)
 
         # Outputting sequence
-        if len(list(data_in)) == 0:
+        # Check if output file has data
+        rows = list(csv.reader(open(output_file_destination)))
+        row_count = len(rows)
+
+        # remove output file if zero rows
+        if row_count == 0:
             logging.info(
                 'The export from the API reached state Completed, but no data were transferred from the API.')
+            os.remove(output_file_destination)
+        # output manifest if rows found
         else:
-            # Output file
-            csv_file = open(output_file_destination, 'wb')
-            csv_file.write(data_in)
-            csv_file.close()
-
             # Output Manifest
-            pk = ['marketoGUID'] if endpoint.lower() == 'activities' else ['id']
+            pk = ['marketoGUID'] if endpoint.lower() == 'activities' else [
+                'id']
             self.save_manifest(
                 file_name=output_file_name, primary_keys=pk)
 
