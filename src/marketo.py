@@ -221,7 +221,7 @@ class Marketo():
 
         # Output file request parameter
         output_url = f'{request_url}/{export_id}/file.json'
-        output_filename = endpoint + '_bulk.csv'
+        output_filename = endpoint.capitalize() + '_bulk.csv'
         output_file_destination = os.path.join(
             self.tables_out_path, output_filename)
 
