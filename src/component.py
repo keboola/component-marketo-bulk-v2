@@ -116,7 +116,7 @@ class Component(CommonInterface):
                       ] if fields_str_tmp else []
 
         # Activities Endpoint optinal parameters
-        desired_activities_tmp = params.get('desired_activities')
+        desired_activities_tmp = query.get('desired_activities')
         desired_activities = [i.strip()
                               for i in desired_activities_tmp.split(",")] if desired_activities_tmp else []
 
