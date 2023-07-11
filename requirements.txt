@@ -1,4 +1,4 @@
 mock
 freezegun
-keboola.component==0.3.0
+keboola.component==1.0.2
 keboola.http-client
