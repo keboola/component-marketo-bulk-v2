@@ -173,7 +173,9 @@ class Marketo():
         self.check_response(create_export, 'Creating export')
 
         if not create_export.json()['success']:
-            logging.error(create_export.text)
+            logging.error(f"url: {export_url}")
+            logging.error(f"parameters: {request_param}")
+            logging.error(f"body: {request_body}")
             logging.error(
                 f'Creating export was not successful; Errors: {create_export.json()["errors"]}')
             sys.exit(1)
