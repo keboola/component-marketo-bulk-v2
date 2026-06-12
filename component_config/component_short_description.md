@@ -1,1 +1,1 @@
-Marketo is a powerful marketing automation software.
+Extracts Marketo leads and lead activities via the Bulk Extract API.
